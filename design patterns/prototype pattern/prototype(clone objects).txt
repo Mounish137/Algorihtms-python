@@ -1,0 +1,25 @@
+from copy import deepcopy
+
+class knight:
+    def __init__(self,val1,val2):
+        self.val1 = val1
+        self.val2 = val2
+    def display(self):
+        print(self.val1,self.val2)
+
+class Builder:
+    def __init__(self):
+        self.unit = knight(20,30)
+
+    def build_knight(self):
+        return deepcopy(self.unit)
+
+a=Builder()
+k1=a.build_knight()
+k2=a.build_knight()
+k1.display()
+k2.display()
+
+'''
+you created object once and return the clone of it whenver wanted
+'''

@@ -1,0 +1,22 @@
+class Single:
+    class __Uno:
+        def __init__(self):
+            self.__val = None
+
+        def set_val(self,val):
+            self.__val = val
+
+        def display(self):
+            print(self.__val)
+    instance =None
+    def __new__(cls):
+        if Single.instance == None:
+            Single.instance = Single.__Uno()
+        return Single.instance
+
+
+a=Single()
+a.set_val(6)
+
+b=Single()
+b.display()

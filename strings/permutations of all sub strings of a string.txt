@@ -1,0 +1,18 @@
+def combi(l1,index,n,curr):
+    if index <= n:
+        permu(list(curr),0,len(curr))
+        for i in range(index,n):
+            combi(l1,i+1,n,curr+l1[i])
+
+def permu(l2,index,n):
+    if index == n:
+        print("".join(l2))
+    if index < n:
+        for i in range(index,n):
+            l2[index],l2[i] = l2[i],l2[index]
+            permu(l2,index + 1,n)
+            l2[index],l2[i] = l2[i],l2[index]
+
+str1="abc"
+l1=list(str1)
+combi(l1,0,len(l1),"")

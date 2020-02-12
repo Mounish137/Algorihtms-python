@@ -1,0 +1,26 @@
+import random
+
+def qsort(l1,lo,hi):
+    if lo <(hi-1):
+        key=l1[lo]
+        i=lo+1
+        j=hi-1
+        while(i<=j):
+            while((i<=j) and (l1[i] <= key)):
+                i=i+1
+            while((i <= j) and (l1[j] >= key)):
+                j=j-1
+            if (i < j):
+                l1[i],l1[j] = l1[j],l1[i]
+        if (j>=0):
+            l1[lo],l1[j]=l1[j],l1[lo]
+        qsort(l1,lo,j)
+        qsort(l1,i,hi)
+
+l1=[]
+for i in range(10):
+    l1.append(random.randint(1,20))
+
+print(l1)
+qsort(l1,0,len(l1))
+print(l1)

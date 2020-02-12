@@ -1,0 +1,15 @@
+l1=[2,4]
+n=13
+l_memo={}
+l_memo[0]=0
+for i in range(0,n+1):
+    global_min=0
+    for j in l1:
+        if (i >= j):
+            if ((l_memo[i-j] != 0) or ((l_memo[i-j]==0) and (i-j) == 0)):
+                len1=1+l_memo[i-j]
+                if (global_min==0) or (global_min > len1):
+                    global_min=len1
+    l_memo[i]=global_min
+
+print(l_memo)

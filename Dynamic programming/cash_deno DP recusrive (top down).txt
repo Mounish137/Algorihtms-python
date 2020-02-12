@@ -1,0 +1,22 @@
+def cash_deno(n,l_memo):
+    if n<=0:
+        return 0
+    else:
+        min_len=0
+        for i in l1:
+            if (n-i) >=0:
+                if (n-i) in l_memo.keys():
+                    len1=1+l_memo[n-i]
+                else:
+                    len1=1+cash_deno(n-i,l_memo)
+                if (min_len == 0) or (min_len > len1):
+                    min_len=len1
+        l_memo[n]=min_len
+        return min_len
+
+l1=[1,2,3,4]
+n=10
+l_memo={}
+l_memo[0]=0
+print(cash_deno(9,l_memo))
+print(l_memo)

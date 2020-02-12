@@ -1,0 +1,42 @@
+import random
+
+def brancher(l1,lo,hi):
+    if lo <(hi-1):
+        mid = int((lo + hi)/2)
+        brancher(l1,lo,mid)
+        brancher(l1,mid,hi)
+        merger(l1,lo,mid,hi)
+
+def merger(l1,lo,mid,hi):
+    temp1=l1[lo:mid]
+    temp2=l1[mid:hi]
+    i_temp1=0
+    i_temp2=0
+    n_temp1=len(temp1)
+    n_temp2=len(temp2)
+
+    while((i_temp1 < n_temp1) and (i_temp2 < n_temp2)):
+        if temp1[i_temp1] < temp2[i_temp2]:
+            l1[lo]=temp1[i_temp1]
+            i_temp1=i_temp1 + 1
+        else:
+            l1[lo]=temp2[i_temp2]
+            i_temp2 = i_temp2 + 1
+        lo=lo+1
+
+    while(i_temp1 < n_temp1):
+        l1[lo]=temp1[i_temp1]
+        i_temp1=i_temp1 + 1
+        lo=lo+1
+
+    while(i_temp2 < n_temp2):
+        l1[lo]=temp2[i_temp2]
+        i_temp2=i_temp2 + 1
+        lo=lo+1
+
+l1=[]
+for i in range(10):
+    l1.append(random.randint(1,20))
+print(l1)
+brancher(l1,0,len(l1))
+print(l1)

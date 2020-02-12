@@ -1,0 +1,42 @@
+def valid_pos(l1,i,j):
+    val=True
+    temp1=i
+    temp2=j
+    while(temp1>=0):
+        if l1[temp1][temp2] ==1:
+            val=False
+            break
+        temp1=temp1-1
+    temp1=i
+    temp2=j
+    while((temp1>=0) and (temp2 >=0)):
+        if l1[temp1][temp2] == 1:
+            val=False
+            break
+        temp1=temp1-1
+        temp2=temp2-1
+    temp1=i
+    temp2=j
+    while((temp1>=0) and (temp2<len(l1[temp1]))):
+        if l1[temp1][temp2] == 1:
+            val =False
+            break
+        temp1=temp1-1
+        temp2=temp2+1
+    return val
+
+def nque(l1,i_row,count):
+    if i_row < len(l1):
+        for k in range(len(l1[i_row])):
+            if valid_pos(l1,i_row,k):
+                l1[i_row][k]=1
+                count=count+1
+                nque(l1,i_row+1,count)
+                if count == 4:
+                    print(l1)
+                l1[i_row][k] =0
+                count=count - 1
+
+
+l1=[[0 for i in range(4)] for j in range(4)]
+nque(l1,0,0)

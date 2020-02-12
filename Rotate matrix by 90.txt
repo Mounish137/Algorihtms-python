@@ -1,0 +1,38 @@
+l1=[[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]]
+#00 03 33 30
+#01 13 31 10
+''' loop
+     00 01 02
+        11
+'''
+
+''' step 1 = x,y interchange and jump y
+    step 2 = x,y interchange and jump y
+    step 3 = x,y interchange and y back to inital
+    step 4 = x,y interchange and y back inital
+'''
+for i in range(len(l1)):
+    for j in range(i,(len(l1[i]) - i) - 1):
+        x=j
+        y=(len(l1[i]) - i) - 1
+        temp = l1[x][y]
+        l1[x][y] = l1[i][j]
+
+        t1=x
+        x = y
+        y=(len(l1[x]) - t1) - 1
+        temp1=l1[x][y]
+        l1[x][y] = temp
+
+        x=y
+        y=i
+        temp2 = l1[x][y]
+        l1[x][y] = temp1
+
+        x=i
+        y=j
+        print(l1[x][y],temp2)
+        l1[x][y] = temp2
+
+for k in range(len(l1)):
+    print(l1[k])

@@ -1,0 +1,101 @@
+import random
+class Node:
+    def __init__(self):
+        self.data = None
+        self.left = None
+        self.right = None
+
+class BST:
+    def __init__(self):
+        self.root = None
+    def insert1(self,val):
+        if self.root != None:
+            self.insert2(self.root,val)
+        else:
+            temp = Node()
+            temp.data = val
+            self.root = temp
+
+    def insert2(self,noder,val):
+        if val <= noder.data:
+            if noder.left != None:
+                self.insert2(noder.left,val)
+            else:
+                temp = Node()
+                temp.data = val
+                noder.left = temp
+        else:
+            if noder.right != None:
+                self.insert2(noder.right,val)
+            else:
+                temp = Node()
+                temp.data = val
+                noder.right  = temp
+
+    def pre_order(self):
+        if self.root != None:
+            self.pre_order2(self.root)
+        else:
+            print("root empty")
+
+    def pre_order2(self,noder):
+        if noder != None:
+            self.pre_order2(noder.left)
+            print(noder.data,end=" ")
+            self.pre_order2(noder.right)
+
+    def depth_tree(self):
+        if self.root != None:
+            print(self.depth_tree2(self.root))
+        else:
+            print("list empty")
+
+    def depth_tree2(self,noder):
+        a=0
+        b=0
+        if noder.left != None:
+            a=1 + self.depth_tree2(noder.left)
+        if noder.right != None:
+            b=1 + self.depth_tree2(noder.right)
+        if a>b:
+            return a
+        else:
+            return b
+
+    def level_order(self):
+        if self.root != None:
+            self.level_order2(self.root)
+        else:
+            print("root empty")
+
+    def level_order2(self,noder):
+        myque=[]
+        myque.append(noder)
+        while(len(myque) > 0):
+            temp = myque.pop(0)
+            print(temp.data,end=" ")
+            if temp.left != None:
+                myque.append(temp.left)
+            if temp.right != None:
+                myque.append(temp.right)
+
+def binary_srch(l1,a,lo,hi):
+    if lo <=(hi-1):
+        mid =int((lo+hi)/2)
+        a.insert1(l1[mid])
+        binary_srch(l1,a,lo,mid)
+        binary_srch(l1,a,mid+1,hi)
+
+l1=[]
+for i in range(10):
+    l1.append(random.randint(1,20))
+l1.sort()
+print(l1)
+print()
+a=BST()
+binary_srch(l1,a,0,len(l1))
+a.pre_order()
+print()
+a.depth_tree()
+print()
+a.level_order()

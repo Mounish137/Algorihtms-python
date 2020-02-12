@@ -1,0 +1,64 @@
+import random
+class Node:
+    def __init__(self):
+        self.data = None
+        self.next = None
+class ll:
+    def __init__(self):
+        self.root = None
+
+    def insert1(self,val):
+        if self.root != None:
+            self.insert2(self.root,val)
+        else:
+            self.root = Node()
+            self.root.data = val
+
+    def insert2(self,noder,val):
+        temp =noder
+        while(temp.next != None):
+            temp=temp.next
+        temp1=Node()
+        temp1.data = val
+        temp.next = temp1
+
+    def display(self):
+        if self.root != None:
+            self.display2(self.root)
+        else:
+            print("list empty")
+
+    def display2(self,noder):
+        temp = noder
+        while(temp != None):
+            print(temp.data,end=" ")
+            temp=temp.next
+
+    def return_k(self,count):
+        if self.root != None:
+            self.return_k2(self.root,count)
+        else:
+            print("list empty")
+
+    def return_k2(self,noder,count):
+        temp = noder
+        tempk = noder
+        i=0
+        while((tempk != None) and (i<count)):
+            tempk=tempk.next
+            i=i+1
+        while(tempk != None):
+            temp=temp.next
+            tempk=tempk.next
+        print(temp.data)
+a=ll()
+l1=[]
+for i in range(11):
+    x=random.randint(1,10)
+    a.insert1(x)
+    l1.append(x)
+
+print(l1)
+a.display()
+print()
+a.return_k(5)

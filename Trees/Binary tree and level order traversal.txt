@@ -1,0 +1,80 @@
+import random
+class Node:
+    def __init__(self):
+        self.data=None
+        self.left = None
+        self.right = None
+
+class BTree:
+    def __init__(self):
+        self.root = None
+    def insert1(self,val):
+        if self.root != None:
+            self.insert2(self.root,val)
+        else:
+            self.root = Node()
+            self.root.data= val
+
+    def insert2(self,noder,val):
+        myque = []
+        myque.append(noder)
+        while(len(myque) > 0):
+            temp = myque.pop(0)
+            if ((temp.left == None) or (temp.right == None)):
+                temp1=Node()
+                temp1.data = val
+                if temp.left == None:
+                    temp.left = temp1
+                else:
+                    temp.right = temp1
+                break
+            else:
+                myque.append(temp.left)
+                myque.append(temp.right)
+
+    def level_traversal(self):
+        if self.root != None:
+            self.level_traversal2(self.root)
+        else:
+            print("tree empty")
+
+    def level_traversal2(self,noder):
+        myque = []
+        myque.append(noder)
+        while(len(myque) > 0):
+            temp = myque.pop(0)
+            print(temp.data,end=" ")
+            if temp.left != None:
+                myque.append(temp.left)
+            if temp.right != None:
+                myque.append(temp.right)
+
+    def depth_of_tree(self):
+        if self.root != None:
+            print(self.depth_of_tree2(self.root))
+        else:
+            print("tree empty")
+
+    def depth_of_tree2(self,noder):
+        a=0
+        b=0
+        if noder.left != None:
+            a =1 + self.depth_of_tree2(noder.left)
+        if noder.right != None:
+            b =1 + self.depth_of_tree2(noder.right)
+        if a > b:
+            return a
+        else:
+            return b
+
+
+a=BTree()
+l1=[]
+for i in range(8):
+    x=random.randint(1,20)
+    a.insert1(x)
+    l1.append(x)
+print(l1)
+a.level_traversal()
+print()
+a.depth_of_tree()

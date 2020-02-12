@@ -1,0 +1,44 @@
+from abc import ABCMeta,abstractmethod
+#a container class which has method which returns an iterable
+class Iterable(metaclass=ABCMeta):
+    @abstractmethod
+    def iterator(self):
+        pass
+
+#abstract iterator
+#contains two methods end,next
+class Iterator(metaclass=ABCMeta):
+    @abstractmethod
+    def has_next(self):
+        pass
+    @abstractmethod
+    def next(self):
+        pass
+
+class lister(Iterable):
+    def __init__(self,val):
+        self.l1 = val
+
+    def iterator(self):
+        return List_iterator(self)
+
+class List_iterator(Iterator):
+    def __init__(self,obj):
+        self.index = 0
+        self.l1 =obj.l1
+        self.len1 = len(self.l1)
+
+    def has_next(self):
+        return self.index < self.len1
+
+    def next(self):
+        val = self.l1[self.index]
+        self.index = self.index + 1
+        return val
+
+if __name__ == '__main__':
+    list1=[1,2,3,4,5]
+    obj1 = lister(list1)
+    list_obj = obj1.iterator()
+    while(list_obj.has_next()):
+        print(list_obj.next())

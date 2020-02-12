@@ -1,0 +1,58 @@
+import random
+class Node:
+    def __init__(self):
+        self.data=None
+        self.next = None
+
+class Linked:
+    def __init__(self):
+        self.ll=None
+
+    def insert_at_end(self,val):
+        if self.ll != None:
+            self.insert_at_end2(self.ll,val)
+        else:
+            self.ll = Node()
+            self.ll.data=val
+
+    def insert_at_end2(self,noder,val):
+        if noder.next != None:
+            self.insert_at_end2(noder.next,val)
+        else:
+            temp=Node()
+            temp.data=val
+            noder.next = temp
+
+    def display(self):
+        if self.ll != None:
+            self.display2(self.ll)
+        else:
+            print("list empty")
+
+    def display2(self,noder):
+        if noder != None:
+            print(noder.data,end=" ")
+            self.display2(noder.next)
+
+
+    def del_k_from_last(self,count):
+        if self.ll != None:
+            self.del_k_from_last2(self.ll,count)
+        else:
+            print("list empty")
+
+    def del_k_from_last2(self,noder,count):
+        if noder.next != None:
+            val = 1 + self.del_k_from_last2(noder.next,count)
+            if val == count:
+                noder.next = noder.next.next
+            return val
+        else:
+            return 0
+a=Linked()
+for i in range(6):
+    a.insert_at_end(random.randint(1,10))
+a.display()
+print()
+a.del_k_from_last(4)
+a.display()

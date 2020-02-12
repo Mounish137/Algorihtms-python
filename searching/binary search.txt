@@ -1,0 +1,20 @@
+import random
+def binary_srch(l1,lo,hi,val):
+    if lo <= (hi-1):
+        mid =int((lo + hi)/2)
+        if val == l1[mid]:
+            return mid
+        elif val > l1[mid]:
+            return binary_srch(l1,mid+1,hi,val)
+        else:
+            return binary_srch(l1,lo,mid,val)
+    else:
+        return -1
+
+l1=[]
+for i in range(10):
+    l1.append(random.randint(1,20))
+l1.sort()
+print(l1)
+x=binary_srch(l1,0,len(l1),1)
+print(x)

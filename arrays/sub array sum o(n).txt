@@ -1,0 +1,18 @@
+l1=[1,2,3,4,5,10,10,5,5,7,3,5,5,2,1,4,6]
+num = 20
+n = len(l1)
+st = 0
+sum1=0
+i=0
+while(i<n):
+    if sum1 < num:
+        sum1=sum1 + l1[i]
+        i=i+1
+    if ((st < i) and (sum1 > num)):
+        sum1 = sum1 - l1[st]
+        st=st+1
+
+    if sum1 == num:
+        print(st,(i-1))
+        sum1=sum1 - l1[st]
+        st=st+1

@@ -1,0 +1,15 @@
+#noder = root
+#l2=2d list
+#level intially 0
+
+def list_levels(noder,l2,level):
+    if noder != None:
+        if len(l2) <= level:
+            temp=[noder.data]
+            l2.append(temp)
+        else:
+            l2[level].append(noder.data)
+        if noder.left != None:
+            list_levels(noder.left,l2,level + 1)
+        if noder.right != None:
+            list_levels(noder.right,l2,level + 1)

@@ -1,0 +1,28 @@
+#include<iostream>
+using namespace std;
+void swap(char *str1,int a,int b){
+  char temp1 = str1[a];
+  str1[a] = str1[b];
+  str1[b] = temp1;
+}
+void permu(char *str1,int index,int n){
+  if( index == n){
+    cout <<str1 <<"\n";
+  }
+  else if(index < n){
+    for(int i=index;i<n;i++){
+      swap(str1,index,i);
+      permu(str1,index+1,n);
+      swap(str1,index,i);
+    }
+
+  }
+
+}
+int main(){
+  char str1[]="abc";
+  int i = 0;
+  int j = sizeof(str1) - 1;
+  permu(str1,i,j);
+  return 0;
+}

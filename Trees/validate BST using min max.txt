@@ -1,0 +1,25 @@
+#inorder traversal with min max
+#mynode is root
+#min1=intially pass float('-inf')
+#max1=initially pass float('inf')
+#going left max becomes current node, min is as before
+#going right min becomes current node max is ad before
+
+
+def validate_bst(mynode,min1,max1):
+    if mynode != None:
+        if ((mynode.data >= min1) and (mynode.data <= max1)):
+            out1=True
+            out2=True
+            if mynode.left != None:
+                out1 = validate_bst(mynode.left,min1,mynode.data)
+            if mynode.right != None:
+                out2 = validate_bst(mynode.right,mynode.data,max1)
+
+            if ((out1 == False) or (out2 == False)):
+                return False
+            return True
+        else:
+            print(f'min={min1} and max={max1} node={mynode.data}')
+            return False
+

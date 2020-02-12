@@ -1,0 +1,45 @@
+def verify_validity(l1,i,j):
+    row_i = i
+
+    #upper column check
+    while(row_i >= 0):
+        if l1[row_i][j] == 1:
+            return False
+        row_i = row_i - 1
+    #Right upper diagonal check
+    row_i = i
+    col_j = j
+    while((row_i >= 0) and (col_j < len(l1[row_i]))):
+        if l1[row_i][col_j] == 1:
+            return False
+        row_i = row_i - 1
+        col_j = col_j + 1
+
+    #left upper diagonal check
+    row_i = i
+    col_j = j
+    while((row_i >= 0) and (col_j >= 0)):
+        if l1[row_i][col_j] == 1:
+            return False
+        row_i = row_i - 1
+        col_j = col_j - 1
+
+    return True
+
+def traverse(l1,i,count):
+    for k in range(len(l1[i])):
+        if verify_validity(l1,i,k) == True:
+            l1[i][k] = 1
+            count[0] = count[0] + 1
+            if count[0] == len(l1):
+                for x in l1:
+                    print(x)
+                print(" ")
+            elif count[0] < len(l1):
+                traverse(l1,i+1,count)
+            l1[i][k] = 0
+            count[0] = count[0] - 1
+
+l1=[[0 for i in range(6)] for j in range(6)]
+count=[0]
+traverse(l1,0,count)
